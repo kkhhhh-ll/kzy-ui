@@ -1,0 +1,53 @@
+.k-tooltip {
+  &-trigger {
+    display: inline-block;
+  }
+  &-content {
+    display: inline-block;
+    padding: var(--k-tooltip-padding);
+    // 背景色
+    background: var(--k-tooltip-bg-color);
+    // 文字颜色
+    color: var(--k-color-white);
+    // 圆角
+    border-radius: 4px;
+    // 箭头颜色
+    &[data-popper-placement^="top"] > #arrow {
+      bottom: -4px;
+    }
+
+    &[data-popper-placement^="bottom"] > #arrow {
+      top: -4px;
+    }
+
+    &[data-popper-placement^="left"] > #arrow {
+      right: -4px;
+    }
+
+    &[data-popper-placement^="right"] > #arrow {
+      left: -4px;
+    }
+  }
+
+  .k-enter-active,
+  .k-leave-active {
+    transition: opacity 0.2s ease-in-out;
+  }
+}
+#arrow,
+#arrow::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+}
+
+#arrow {
+  visibility: hidden;
+}
+
+#arrow::before {
+  visibility: visible;
+  content: "";
+  transform: rotate(45deg);
+}
