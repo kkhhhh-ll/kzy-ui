@@ -8,6 +8,7 @@ import {
 export default defineConfig({
   title: "kzy-ui",
   description: "小ui库昂",
+  base: "/kzy-ui/",
   srcDir: "components",
   vite: {
     resolve: {
