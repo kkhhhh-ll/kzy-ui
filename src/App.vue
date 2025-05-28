@@ -8,7 +8,7 @@ import KCollapseItem from "./components/Collapse/CollapseItem.vue";
 import KTooltip from "./components/Tooltip/Tooltip.vue";
 import KDropdown from "./components/Dropdown/Dropdown";
 import KInput from "./components/Input/Input.vue";
-import KMessage from "./components/Message/Message.vue";
+// import KMessage from "./components/Message/Message.vue";
 import KSwitch from "./components/Switch/Switch.vue";
 import { createMessage } from "./components/Message/method.ts";
 import type { ButtonInstance } from "./components/Button/types.ts";
