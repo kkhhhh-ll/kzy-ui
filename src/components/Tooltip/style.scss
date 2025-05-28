@@ -4,6 +4,7 @@
   }
   &-content {
     display: inline-block;
+    z-index: 9999;
     padding: var(--k-tooltip-padding);
     // 背景色
     background: var(--k-tooltip-bg-color);

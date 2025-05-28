@@ -7,7 +7,9 @@ import KCollapse from "./components/Collapse/Collapse.vue";
 import KCollapseItem from "./components/Collapse/CollapseItem.vue";
 import KTooltip from "./components/Tooltip/Tooltip.vue";
 import KDropdown from "./components/Dropdown/Dropdown";
+import KInput from "./components/Input/Input.vue";
 import KMessage from "./components/Message/Message.vue";
+import KSwitch from "./components/Switch/Switch.vue";
 import { createMessage } from "./components/Message/method.ts";
 import type { ButtonInstance } from "./components/Button/types.ts";
 import type { TooltipInstance } from "./components/Tooltip/types.ts";
@@ -27,6 +29,7 @@ const changeTooltipShow = () => {
 const changeTooltipHide = () => {
   tooltipRef.value?.hide();
 };
+const inputValue = ref<string | undefined>();
 const menuOptions = reactive<MenuOption[]>([
   {
     label: "1",
@@ -43,6 +46,23 @@ const menuOptions = reactive<MenuOption[]>([
     divided: true,
   },
 ]);
+const test = ref(false);
+const callback = (entries: IntersectionObserverEntry[]) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      const img = entry.target as HTMLImageElement;
+      img.src = img.dataset.src || "";
+      observer.unobserve(img);
+    }
+  });
+};
+const observer = new IntersectionObserver(callback);
+onMounted(() => {
+  const imgs = document.querySelectorAll("img");
+  imgs.forEach((img) => {
+    observer.observe(img);
+  });
+});
 </script>
 
 <template>
@@ -50,9 +70,12 @@ const menuOptions = reactive<MenuOption[]>([
     <h3>KButton</h3>
     <div class="btn">
       <Kbutton ref="buttonRef" @click="changeTooltipShow">default</Kbutton>
-      <Kbutton type="primary" @click="changeTooltipHide">primary</Kbutton>
+      <Kbutton type="primary" size="small" @click="changeTooltipHide"
+        >primary</Kbutton
+      >
       <Kbutton
         type="success"
+        size="large"
         @click="
           createMessage({
             message: '111',
@@ -113,6 +136,8 @@ const menuOptions = reactive<MenuOption[]>([
     </div>
     <div class="btn">
       <Kbutton type="primary" loading></Kbutton>
+      <Kbutton type="danger" circle loading></Kbutton>
+
       <Kbutton type="success" icon="arrow-up">1</Kbutton>
       <Kbutton plain icon="arrow-down">plain</Kbutton>
     </div>
@@ -165,7 +190,9 @@ const menuOptions = reactive<MenuOption[]>([
     <KAlert type="warning" effect="dark" content="hhh" showIcon> </KAlert>
     <KAlert type="danger" effect="dark" content="hhh" showIcon> </KAlert>
   </div>
-
+  <img data-src="/public/favicon.ico" />
+  <img data-src="/public/favicon.ico" />
+  <img data-src="/public/favicon.ico" />
   <h3>Ktootip</h3>
   <KTooltip content="点击提示词" trigger="click">
     <span>点击我就可以</span>
@@ -181,6 +208,12 @@ const menuOptions = reactive<MenuOption[]>([
   <KDropdown :menu-options="menuOptions" trigger="click" placement="bottom">
     <div>下拉显示</div>
   </KDropdown>
+
+  <h3>KInput</h3>
+  <KInput v-model="inputValue" />
+
+  <h3>KSwitch</h3>
+  <KSwitch v-model="test" active-text="on" inactive-text="off" />
 </template>
 
 <style scoped lang="scss">
