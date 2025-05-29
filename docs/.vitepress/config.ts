@@ -38,6 +38,7 @@ export default defineConfig({
           // { text: "Icon", link: "/icon" },
           { text: "Collapse", link: "/collapse" },
           { text: "Tooltip", link: "/tooltip" },
+          { text: "Alert", link: "/alert" },
         ],
       },
     ],
