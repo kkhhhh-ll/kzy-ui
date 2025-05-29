@@ -102,39 +102,6 @@ onMounted(() => {
       <Kbutton type="info">info</Kbutton>
     </div>
     <div class="btn">
-      <Kbutton plain>plain</Kbutton>
-      <Kbutton type="primary" plain>primary</Kbutton>
-      <Kbutton type="success" plain>success</Kbutton>
-      <Kbutton type="danger" plain>danger</Kbutton>
-      <Kbutton type="warning" plain>warning</Kbutton>
-      <Kbutton type="info" plain>info</Kbutton>
-    </div>
-    <div class="btn">
-      <Kbutton round>round</Kbutton>
-      <Kbutton type="primary" round>primary</Kbutton>
-      <Kbutton type="success" round>success</Kbutton>
-      <Kbutton type="danger" round>danger</Kbutton>
-      <Kbutton type="warning" round>warning</Kbutton>
-      <Kbutton type="info" round>info</Kbutton>
-    </div>
-
-    <div class="btn">
-      <Kbutton :disabled="true">disabled</Kbutton>
-      <Kbutton type="primary" :disabled="true">primary</Kbutton>
-      <Kbutton type="success" :disabled="true">success</Kbutton>
-      <Kbutton type="danger" :disabled="true">danger</Kbutton>
-      <Kbutton type="warning" :disabled="true">warning</Kbutton>
-      <Kbutton type="info" :disabled="true">info</Kbutton>
-    </div>
-    <div class="btn">
-      <Kbutton plain :disabled="true">plain</Kbutton>
-      <Kbutton type="primary" plain :disabled="true">primary</Kbutton>
-      <Kbutton type="success" plain :disabled="true">success</Kbutton>
-      <Kbutton type="danger" plain :disabled="true">danger</Kbutton>
-      <Kbutton type="warning" plain :disabled="true">warning</Kbutton>
-      <Kbutton type="info" plain :disabled="true">info</Kbutton>
-    </div>
-    <div class="btn">
       <Kbutton type="primary" loading></Kbutton>
       <Kbutton type="danger" circle loading></Kbutton>
 
@@ -183,10 +150,6 @@ onMounted(() => {
     <h3>KAlert</h3>
     <KAlert type="success" content="hhh" showIcon> </KAlert>
     <KAlert type="primary" content="hhh" showIcon> </KAlert>
-    <KAlert type="warning" content="hhh" showIcon> </KAlert>
-    <KAlert type="danger" content="hhh" showIcon> </KAlert>
-    <KAlert type="success" effect="dark" content="hhh" showIcon> </KAlert>
-    <KAlert type="primary" effect="dark" content="hhh" showIcon> </KAlert>
     <KAlert type="warning" effect="dark" content="hhh" showIcon> </KAlert>
     <KAlert type="danger" effect="dark" content="hhh" showIcon> </KAlert>
   </div>
@@ -218,8 +181,8 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .btn {
-  margin: 10px;
-  display: flex;
-  gap: 10px;
+  .k-button {
+    margin: 0 5px;
+  }
 }
 </style>

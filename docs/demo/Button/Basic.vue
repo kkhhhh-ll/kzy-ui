@@ -1,41 +1,41 @@
 <template>
   <div class="btn">
-    <Kbutton>default</Kbutton>
-    <Kbutton type="primary">primary</Kbutton>
-    <Kbutton type="success">success</Kbutton>
-    <Kbutton type="danger">danger</Kbutton>
-    <Kbutton type="warning">warning</Kbutton>
-    <Kbutton type="info">info</Kbutton>
+    <Button>default</Button>
+    <Button type="primary">primary</Button>
+    <Button type="success">success</Button>
+    <Button type="danger">danger</Button>
+    <Button type="warning">warning</Button>
+    <Button type="info">info</Button>
   </div>
   <div class="btn">
-    <Kbutton plain>plain</Kbutton>
-    <Kbutton type="primary" plain>primary</Kbutton>
-    <Kbutton type="success" plain>success</Kbutton>
-    <Kbutton type="danger" plain>danger</Kbutton>
-    <Kbutton type="warning" plain>warning</Kbutton>
-    <Kbutton type="info" plain>info</Kbutton>
+    <Button plain>plain</Button>
+    <Button type="primary" plain>primary</Button>
+    <Button type="success" plain>success</Button>
+    <Button type="danger" plain>danger</Button>
+    <Button type="warning" plain>warning</Button>
+    <Button type="info" plain>info</Button>
   </div>
   <div class="btn">
-    <Kbutton round>round</Kbutton>
-    <Kbutton type="primary" round>primary</Kbutton>
-    <Kbutton type="success" round>success</Kbutton>
-    <Kbutton type="danger" round>danger</Kbutton>
-    <Kbutton type="warning" round>warning</Kbutton>
-    <Kbutton type="info" round>info</Kbutton>
+    <Button round>round</Button>
+    <Button type="primary" round>primary</Button>
+    <Button type="success" round>success</Button>
+    <Button type="danger" round>danger</Button>
+    <Button type="warning" round>warning</Button>
+    <Button type="info" round>info</Button>
   </div>
   <div class="btn">
-    <Kbutton type="primary" loading></Kbutton>
-    <Kbutton type="success" icon="arrow-up">向上箭头</Kbutton>
-    <Kbutton plain icon="arrow-down">向下箭头</Kbutton>
+    <Button type="primary" loading></Button>
+    <Button type="danger" circle loading></Button>
+    <Button type="success" icon="arrow-up">向上箭头</Button>
   </div>
 </template>
 <script setup>
-import Kbutton from "@/components/Button/Button.vue";
+import Button from "@/components/Button/Button.vue";
 </script>
 <style lang="scss" scoped>
 .btn {
-  margin: 10px;
-  display: flex;
-  gap: 10px;
+  .k-button {
+    margin: 0 5px;
+  }
 }
 </style>

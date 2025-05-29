@@ -1,28 +1,28 @@
 <template>
   <div class="btn">
-    <Kbutton disabled>default</Kbutton>
-    <Kbutton type="primary" disabled>primary</Kbutton>
-    <Kbutton type="success" disabled>success</Kbutton>
-    <Kbutton type="danger" disabled>danger</Kbutton>
-    <Kbutton type="warning" disabled>warning</Kbutton>
-    <Kbutton type="info" disabled>info</Kbutton>
+    <Button disabled>default</Button>
+    <Button type="primary" disabled>primary</Button>
+    <Button type="success" disabled>success</Button>
+    <Button type="danger" disabled>danger</Button>
+    <Button type="warning" disabled>warning</Button>
+    <Button type="info" disabled>info</Button>
   </div>
   <div class="btn">
-    <Kbutton disabled plain>default</Kbutton>
-    <Kbutton type="primary" disabled plain>primary</Kbutton>
-    <Kbutton type="success" disabled plain>success</Kbutton>
-    <Kbutton type="danger" disabled plain>danger</Kbutton>
-    <Kbutton type="warning" disabled plain>warning</Kbutton>
-    <Kbutton type="info" disabled plain>info</Kbutton>
+    <Button disabled plain>default</Button>
+    <Button type="primary" disabled plain>primary</Button>
+    <Button type="success" disabled plain>success</Button>
+    <Button type="danger" disabled plain>danger</Button>
+    <Button type="warning" disabled plain>warning</Button>
+    <Button type="info" disabled plain>info</Button>
   </div>
 </template>
 <script setup>
-import Kbutton from "@/components/Button/Button.vue";
+import Button from "@/components/Button/Button.vue";
 </script>
 <style lang="scss" scoped>
 .btn {
-  margin: 10px;
-  display: flex;
-  gap: 10px;
+  .k-button {
+    margin: 0 5px;
+  }
 }
 </style>

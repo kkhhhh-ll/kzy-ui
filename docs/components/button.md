@@ -1,6 +1,6 @@
 ---
-title: Kbutton | K-Element
-description: Kbutton 组件的文档
+title: Button | K-Element
+description: Button 组件的文档
 ---
 
 # Button 按钮
@@ -9,7 +9,7 @@ description: Kbutton 组件的文档
 
 ## 基础用法
 
-使用 `type`、`plain`和`round` 来定义按钮的样式。
+使用 `type`、`plain`、`round`和`circle` 来定义按钮的样式。
 
 <preview path="../demo/Button/Basic.vue" title="基础用法" description="Button 组件的基础用法"></preview>
 
@@ -30,8 +30,10 @@ description: Kbutton 组件的文档
 | type     | 按钮类型       | enum: 'default','primary','warning','info','danger','success' | 'default' |
 | plain    | 是否为朴素按钮 | boolean                                                       | false     |
 | round    | 是否为圆角按钮 | boolean                                                       | false     |
+| circle   | 是否为圆形按钮 | boolean                                                       | false     |
 | disabled | 按钮禁用状态   | boolean                                                       | false     |
 | loading  | 是否为加载状态 | boolean                                                       | false     |
+| size     | 按钮大小       | enum:'large','medium','small'                                 | 'medium'  |
 
 # Button Slots
 
