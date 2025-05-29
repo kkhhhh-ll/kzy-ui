@@ -35,7 +35,8 @@ export default defineConfig({
         text: "Basic",
         items: [
           { text: "Button", link: "/button" },
-          { text: "Icon", link: "/icon" },
+          // { text: "Icon", link: "/icon" },
+          { text: "Collapse", link: "/collapse" },
         ],
       },
     ],
