@@ -13,5 +13,5 @@
   </Tooltip>
 </template>
 <script setup>
-import Tooltip from "./components/Tooltip/Tooltip.vue";
+import Tooltip from "@/components/Tooltip/Tooltip.vue";
 </script>
