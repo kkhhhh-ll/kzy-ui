@@ -21,6 +21,12 @@ description: Button 组件的文档
 
 <preview path="../demo/Button/Disabled.vue" title="禁用状态" description="Button 组件的禁用状态"></preview>
 
+## 按钮尺寸
+
+你可以使用 `size` 属性来定义按钮的尺寸。
+
+<preview path="../demo/Button/Size.vue" title="按钮尺寸" description="Button 组件的尺寸"></preview>
+
 ## Button API
 
 # Button Attributes

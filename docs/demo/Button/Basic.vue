@@ -35,7 +35,7 @@ import Button from "@/components/Button/Button.vue";
 <style lang="scss" scoped>
 .btn {
   .k-button {
-    margin: 0 5px;
+    margin: 5px;
   }
 }
 </style>
