@@ -6,7 +6,7 @@
 
 <script setup>
 import { h, reactive } from "vue";
-import Dropdown from "@/components/Dropdown/Dropdown";
+import Dropdown from "@/components/Dropdown/Dropdown.vue";
 const menuOptions = reactive([
   {
     label: "1",
