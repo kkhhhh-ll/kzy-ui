@@ -39,6 +39,7 @@ export default defineConfig({
           { text: "Collapse", link: "/collapse" },
           { text: "Tooltip", link: "/tooltip" },
           { text: "Alert", link: "/alert" },
+          { text: "Dropdown", link: "/dropdown" },
         ],
       },
     ],
