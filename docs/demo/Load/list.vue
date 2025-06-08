@@ -40,6 +40,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   obsever.disconnect(); // 在组件卸载时，断开观察器
+  const loadList = document.querySelector(".load-list");
+  loadList!.innerHTML = ""; // 清空加载列表
 });
 </script>
 
