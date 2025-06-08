@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "kzy-ui"
-  text: "小ui库昂"
-  tagline: elementplus-瘦骨嶙峋版
+  name: "前端技术分享"
+  text: "你的代码在我之上？"
+  tagline: 我看未必！！！
   # actions:
   #   - theme: brand
   #     text: Markdown Examples
