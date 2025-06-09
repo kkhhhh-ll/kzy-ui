@@ -1,0 +1,48 @@
+.k-color {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  padding: 5px;
+  font-size: 14px;
+
+  input[type="color"] {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.2s;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px #409eff33;
+    }
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border-radius: 4px;
+    }
+
+    &::-webkit-color-swatch {
+      border: none;
+      border-radius: 4px;
+    }
+
+    &::-moz-color-swatch {
+      border: none;
+      border-radius: 4px;
+    }
+  }
+
+  &.is-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+
+    input[type="color"] {
+      background: #f5f7fa;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -10,6 +10,7 @@ import KDropdown from "./components/Dropdown/Dropdown";
 import KInput from "./components/Input/Input.vue";
 // import KMessage from "./components/Message/Message.vue";
 import KSwitch from "./components/Switch/Switch.vue";
+import KColor from "./components/Color/Color.vue";
 import { createMessage } from "./components/Message/method.ts";
 import type { ButtonInstance } from "./components/Button/types.ts";
 import type { TooltipInstance } from "./components/Tooltip/types.ts";
@@ -63,10 +64,17 @@ onMounted(() => {
     observer.observe(img);
   });
 });
+const colorSet = ref<string>("#fff");
+const changeColor = (val: string) => {
+  console.log("color change", val);
+};
 </script>
 
 <template>
   <div>
+    <KColor v-model="colorSet" @change="changeColor"></KColor>
+    <KColor disabled v-model="colorSet" @change="changeColor"></KColor>
+
     <h3>KButton</h3>
     <div class="btn">
       <Kbutton ref="buttonRef" @click="changeTooltipShow">default</Kbutton>
