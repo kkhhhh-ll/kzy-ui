@@ -4,6 +4,7 @@ let index: number = 0;
 const loadMore = (num: number) => {
   for (let i = 0; i < num; i++) {
     index++;
+    if (index > 20) return; // 限制加载的最大条数为20条
     const p = document.createElement("p");
     p.innerText = `加载的第${index}条数据`;
     const loadList = document.querySelector(".load-list");
@@ -40,8 +41,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   obsever.disconnect(); // 在组件卸载时，断开观察器
-  //   const loadList = document.querySelector(".load-list");
-  //   loadList!.innerHTML = ""; // 清空加载列表
+  const loadList = document.querySelector(".load-list");
+  loadList!.innerHTML = ""; // 清空加载列表
 });
 </script>
 
