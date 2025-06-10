@@ -44,8 +44,22 @@ export default defineConfig({
       ],
       "/blogs/": [
         {
-          text: "技术分享",
+          text: "性能优化",
           items: [{ text: "Intersection Observer", link: "/blogs/load" }],
+        },
+        {
+          text: "Typescript",
+          items: [
+            { text: "介绍", link: "/blogs/typescript" },
+            { text: "基本数据类型", link: "/blogs/typescript-basic" },
+            { text: "数组", link: "/blogs/typescript-array" },
+            { text: "元组", link: "/blogs/typescript-tuple" },
+            { text: "对象", link: "/blogs/typescript-object" },
+            { text: "枚举", link: "/blogs/typescript-enum" },
+            { text: "类型", link: "/blogs/typescript-type" },
+            { text: "接口", link: "/blogs/typescript-interface" },
+            { text: "函数", link: "/blogs/typescript-func" },
+          ],
         },
       ],
     },
