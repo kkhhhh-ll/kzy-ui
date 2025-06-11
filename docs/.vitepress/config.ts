@@ -59,6 +59,7 @@ export default defineConfig({
             { text: "类型", link: "/blogs/typescript-type" },
             { text: "接口", link: "/blogs/typescript-interface" },
             { text: "函数", link: "/blogs/typescript-func" },
+            { text: "泛型", link: "/blogs/typescript-gen" },
           ],
         },
       ],
