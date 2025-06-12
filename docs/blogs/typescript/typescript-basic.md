@@ -1,62 +1,62 @@
-## 1、基本数据类型
+## 基本数据类型
 
-### 1.1 number
+### number
 
 ```
 let a:number = 1
 ```
 
-### 1.2 string
+### string
 
 ```
 let a:string = '1'
 ```
 
-### 1.3 boolean
+### boolean
 
 ```
 let a:boolean = true
 ```
 
-### 1.4 undefined
+### undefined
 
 ```
 let a:undefined = undefined
 ```
 
-### 1.5 null
+### null
 
 ```
 let a:null = null
 ```
 
-### 1.6 symbol
+### symbol
 
 ```
 let sym: symbol = Symbol("key");
 ```
 
-### 1.7 any
+### any
 
 ```
 let anyValue: any = "可以赋任意值"; // 任意类型（禁用类型检查）
 ```
 
-### 1.8 unknown
+### unknown
 
 ```
 let unknownValue: unknown = "类型安全版的any"; // 未知类型（需类型断言后使用）
 ```
 
-### 1.9 never
+### never
 
 ```
 let neverValue: never; // 表示永远不存在的值（如抛出错误的函数）
 ```
 
-## 2、any 和 unknown 比较
+## any 和 unknown 比较
 
-### 2.1 类型安全性
+### 类型安全性
 
 完全绕过类型检查：any 会关闭 TypeScript 的类型系统，允许对该变量执行任何操作（如调用方法、访问属性），而不会触发编译错误。
 
@@ -80,7 +80,7 @@ if (typeof value === "string") {
 }
 ```
 
-### 2.2 类型断言
+### 类型断言
 
 any 可以直接断言为任何类型，无需检查。
 
@@ -100,7 +100,7 @@ if (typeof value === "string") {
 }
 ```
 
-### 2.3 类型收窄
+### 类型收窄
 
 any 无法收窄类型，始终保持 any。
 
