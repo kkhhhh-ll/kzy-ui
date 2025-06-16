@@ -69,6 +69,15 @@ export default defineConfig({
           text: "正则表达式",
           items: [{ text: "介绍", link: "/blogs/reg/reg" }],
         },
+        {
+          text: "javaScript",
+          items: [
+            {
+              text: "this指向",
+              link: "/blogs/javaScript/this",
+            },
+          ],
+        },
       ],
     },
 
