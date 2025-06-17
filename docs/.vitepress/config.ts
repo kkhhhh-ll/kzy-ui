@@ -76,6 +76,10 @@ export default defineConfig({
               text: "this指向",
               link: "/blogs/javaScript/this",
             },
+            {
+              text: "原型和原型链",
+              link: "/blogs/javaScript/proto",
+            },
           ],
         },
       ],
