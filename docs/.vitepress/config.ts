@@ -80,6 +80,10 @@ export default defineConfig({
               text: "原型和原型链",
               link: "/blogs/javaScript/proto",
             },
+            {
+              text: "LRU算法",
+              link: "/blogs/javaScript/lru",
+            },
           ],
         },
       ],
