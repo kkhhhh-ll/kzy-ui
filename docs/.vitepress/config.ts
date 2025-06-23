@@ -84,6 +84,27 @@ export default defineConfig({
               text: "LRU算法",
               link: "/blogs/javaScript/lru",
             },
+            {
+              text: "import.meta",
+              link: "/blogs/javaScript/import-meta",
+            },
+          ],
+        },
+        {
+          text: "vue3",
+          items: [
+            {
+              text: "vue3设计思想和理念",
+              link: "/blogs/vue3/design",
+            },
+            {
+              text: "vue3整体架构",
+              link: "/blogs/vue3/architecture",
+            },
+            {
+              text: "monorepo开发环境搭建/esbuild打包",
+              link: "/blogs/vue3/monorepo",
+            },
           ],
         },
       ],
