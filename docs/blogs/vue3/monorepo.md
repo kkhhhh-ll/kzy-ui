@@ -33,6 +33,7 @@ pnpm install @vue/shared --workspace --filter @vue/reactivity
 6、建立 pnpm-workspace.yaml 文件。<br>
 
 ```
+// 表示packages目录下所有的子目录都被包含在工作空间中。
 packages:
      --"packages/*"
 ```

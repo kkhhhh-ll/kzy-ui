@@ -105,6 +105,10 @@ export default defineConfig({
               text: "monorepo开发环境搭建/esbuild打包",
               link: "/blogs/vue3/monorepo",
             },
+            {
+              text: "Vue3响应式",
+              link: "/blogs/vue3/reactive",
+            },
           ],
         },
       ],
