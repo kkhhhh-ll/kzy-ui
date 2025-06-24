@@ -111,6 +111,15 @@ export default defineConfig({
             },
           ],
         },
+        {
+          text: "工程化",
+          items: [
+            {
+              text: "pnpm",
+              link: "/blogs/constructor/pnpm",
+            },
+          ],
+        },
       ],
     },
 
