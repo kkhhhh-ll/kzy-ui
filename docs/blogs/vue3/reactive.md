@@ -1,7 +1,6 @@
 ## reactive
 
 reactive：使数据变为响应式数据。代表数据。<br>
-effct：副作用函数，数据更新时，effect 重新执行。代表视图
 
 ```
 // reactive
@@ -49,5 +48,42 @@ function createReactive(target) {
   reactiveMap.set(target, proxy);
   return proxy;
 }
+
+```
+
+## effect
+
+effct：副作用函数，数据更新时，effect 重新执行。代表视图
+
+```
+// 当前运行的effect
+export let activeEffect;
+export function effect(fn, options) {
+  const _effect = new ReactiveEffect(fn, () => {
+    _effect.run();
+  });
+  _effect.run();
+  return _effect;
+}
+class ReactiveEffect {
+  public active = true;
+  constructor(public fn, public sce) {}
+  run() {
+    if (!this.active) {
+      return this.fn();
+    }
+    // 嵌套使用effect时，保证使用的effect是正确的
+    let lastEffect = activeEffect;
+    // 套路可以一学
+    try {
+      // 当前触发对象的effect赋值给activeEffect
+      activeEffect = this;
+      return this.fn();
+    } finally {
+      activeEffect = lastEffect;
+    }
+  }
+}
+
 
 ```
