@@ -22,6 +22,7 @@ const mutableHandles = {
     if (key === ReactiveFlags.IS_REACTIVE) {
       return true;
     }
+    // 收集这个对象中这个属性对应的所有的effect函数
     track(target, key);
     // 使用reflect保证this指向代理对象
     let res = Reflect.get(target, key);
@@ -48,7 +49,6 @@ function createReactive(target) {
   reactiveMap.set(target, proxy);
   return proxy;
 }
-
 ```
 
 ## effect
@@ -57,17 +57,59 @@ effct：副作用函数，数据更新时，effect 重新执行。代表视图
 
 ```
 // 当前运行的effect
-export let activeEffect;
-export function effect(fn, options) {
+let activeEffect;
+function effect(fn, options) {
   const _effect = new ReactiveEffect(fn, () => {
     _effect.run();
   });
   _effect.run();
-  return _effect;
+  if (options) {
+    // 可在effect函数中自定义调度函数
+    Object.assign(_effect, options);
+  }
+  // effect函数执行完成后可获取刚刚建立的_effect对象中的run函数
+  // 使用：options中传递sceduler函数，在依赖收集前可以运行自己的逻辑（AOP）
+  // const runner = effect(()=>state.age++,()=> {
+  //  console.log('自己想做的事儿')
+  //  runner()
+  // })
+  let runner = _effect.run.bind(_effect);
+  runner.effect = _effect;
+  return runner;
 }
+function cleanDepEffect(dep, effect) {
+  dep.delete(effect);
+  if (dep.size === 0) {
+    // 属性没有对应的依赖收集函数，从map中删除该属性
+    dep.cleanup();
+  }
+}
+const preCleanUpEffect = (effect) => {
+  // 做diff算法使用
+  effect._depsLength = 0;
+  // 同一个effect执行，只收集一个
+  effect._trackId++;
+};
+const postCleanEffect = (effect) => {
+  // 以前收集的属性比较多
+  if (effect.deps.length > effect._depsLength) {
+    for (let i = effect._depsLength; i < effect.deps.length; i++) {
+      cleanDepEffect(effect.deps[i], effect);
+    }
+    effect.deps.length = effect._depsLength;
+  }
+};
 class ReactiveEffect {
+  // 默认是响应式的，套路
   public active = true;
-  constructor(public fn, public sce) {}
+  // 记录执行次数
+  static _trackId = 0;
+  static _depsLength = 0;
+  static deps = [];
+  // effect中的函数正在执行
+  static _runnings = 0;
+  // fn为effct中包裹的函数，scheduler是执行effect包裹函数的函数
+  constructor(public fn, public scheduler) {}
   run() {
     if (!this.active) {
       return this.fn();
@@ -78,12 +120,103 @@ class ReactiveEffect {
     try {
       // 当前触发对象的effect赋值给activeEffect
       activeEffect = this;
+      preCleanUpEffect(this);
+      this._runnings++;
       return this.fn();
     } finally {
+      this._runnings--;
+      postCleanEffect(this);
       activeEffect = lastEffect;
     }
   }
 }
 
+```
 
+## track
+
+依赖收集函数，收集响应式对象中某个属性对应的所有的 effect 函数
+
+```
+{
+  obj: {
+    key1: {
+      effect1, effect2;
+    }
+  }
+}
+
+// 双向记忆
+function trackEffect(effect, dep) {
+  // 保证属性只被收集一次（state.age, state.age,state.age）
+  if (dep.get(effect) !== effect._trackId) {
+    dep.set(effect, effect._trackId);
+    // 对收集的属性做diff算法
+    let oldDep = effect.deps[effect._depsLength];
+    if (oldDep !== dep) {
+      if (oldDep) {
+        cleanDepEffect(oldDep, effect);
+      }
+      effect.deps[effect._depsLength++] = dep;
+    } else {
+      effect._depsLength++;
+    }
+  }
+}
+let targetMap = new WeakMap();
+const createDep = (cleanup, key) => {
+  const dep = new Map();
+  // 属性清理函数： () => depsMap.delete(key)
+  dep.cleanup = cleanup;
+  dep.name = key;
+  // 返回创建的dep
+  return dep;
+};
+function track(target, key) {
+  if (!activeEffect) {
+    return;
+  }
+  // 先看有无存储此响应式对象
+  let depsMap = targetMap.get(target);
+  if (!depsMap) {
+    targetMap.set(target, (depsMap = new Map()));
+  }
+  // 再看是否有该属性
+  // dep：属性对应的effect函数
+  let dep = depsMap.get(key);
+  if (!dep) {
+    depsMap.set(key, (dep = createDep(() => depsMap.delete(key), key)));
+  }
+  // 将当前的effect存放于dep中，后续可根据值的变化触发dep中的effect函数
+  trackEffect(activeEffect, dep);
+}
+```
+
+## trigger
+
+触发更新函数
+
+```
+function triggerEffects(dep) {
+  for (const effect of dep.keys()) {
+    if (effect.scheduler) {
+      // effect没有在执行，重新触发更新函数
+      if (effect._runnings === 0) {
+        effect.scheduler();
+      }
+    }
+  }
+}
+
+function trigger(target, key, value, oldValue) {
+  const depsMap = targetMap.get(target);
+  if (!depsMap) {
+    return;
+  }
+  const dep = depsMap.get(key);
+  if (!dep) {
+    return;
+  }
+  triggerEffects(dep);
+}
 ```
