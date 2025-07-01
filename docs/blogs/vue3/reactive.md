@@ -1,3 +1,63 @@
+## 核心
+
+一、reactive<br>
+1、reactive 的结果是一个代理对象。<br>
+2、采用 proxy+reflect 实现数据响应式。在 getter 中监听对象中的某个属性被访问，track 收集其对应的 effect 函数，在 setter 中 trigger 触发属性值发生变化后的更新函数。<br>优势：<br>
+（1）proxy 可对整个对象做拦截，无需像 vue2 采用 Object.defineProperty 遍历循环对象中的每个属性去定义其 getter 和 setter。<br>
+（2）reflect 可保证 this 指向 proxy 对象；防止使用 handler 获取 key 时出现死循环；函数化行为使用对象内部属性。<br>
+3、涉及性能优化：<br>
+（1）map 存储 target 对象，只代理一次；<br>
+（2）已经被代理的对象（拥有自己的 getter 和 setter）不会再次代理；<br>
+（3）reflect 可获取属性值，若属性值为对象，可进行深度代理；<br>
+（4）属性值发生变化时，可与老值做对比，判断是否需要更新。<br>
+
+二、effect<br>
+1、当前运行的 effect 是一个全局变量。<br>
+2、存储了变量值发生变化时，需要重新执行的更新函数<br>
+
+三、track<br>
+记录属性和 effect 两者之间的关系<br>
+一个属性对应多个 effect，一个 effect 对应多个属性<br>
+1、map 存储 target 对象<br>
+
+```
+{
+  obj1,
+  obj2
+}
+```
+
+2、obj1 存储触发响应式的属性<br>
+
+```
+{
+  obj1: {
+    key1: {},
+    key2: {},
+  },
+};
+```
+
+3、key1,key2 存储对应的 effect 更新函数<br>
+
+```
+{
+  obj1: {
+    key1: {
+      effect1,
+      effect2,
+    },
+    key2: {
+      effect1,
+      effect2,
+    },
+  },
+};
+```
+
+四、trackEffect
+存储该 effect 对应的属性
+
 ## reactive
 
 reactive：使数据变为响应式数据。代表数据。<br>
