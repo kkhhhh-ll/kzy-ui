@@ -55,7 +55,7 @@
 };
 ```
 
-四、trackEffect
+四、trackEffect<br>
 存储该 effect 对应的属性
 
 ## reactive
