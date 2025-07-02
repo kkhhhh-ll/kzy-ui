@@ -112,6 +112,23 @@ export default defineConfig({
           ],
         },
         {
+          text: "Node",
+          items: [
+            {
+              text: "node内置模块-全局",
+              link: "/blogs/node/global",
+            },
+            {
+              text: "node内置模块-进程",
+              link: "/blogs/node/process",
+            },
+            {
+              text: "node内置模块-path",
+              link: "/blogs/node/path",
+            },
+          ],
+        },
+        {
           text: "工程化",
           items: [
             {
