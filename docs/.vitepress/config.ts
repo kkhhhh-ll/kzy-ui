@@ -91,6 +91,15 @@ export default defineConfig({
           ],
         },
         {
+          text: "浏览器",
+          items: [
+            {
+              text: "浏览器",
+              link: "/blogs/chrome/chrome",
+            },
+          ],
+        },
+        {
           text: "vue3",
           items: [
             {
@@ -125,6 +134,10 @@ export default defineConfig({
             {
               text: "node内置模块-path",
               link: "/blogs/node/path",
+            },
+            {
+              text: "node内置模块-fs",
+              link: "/blogs/node/fs",
             },
           ],
         },

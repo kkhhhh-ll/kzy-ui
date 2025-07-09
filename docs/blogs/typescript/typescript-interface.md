@@ -4,7 +4,7 @@
 
 ```
 interface Iobj {
-    name: 'string',
+    name: 'string';
     age?: number
 }
 let obj:Iobj = {
