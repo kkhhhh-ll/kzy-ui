@@ -91,11 +91,11 @@ export default defineConfig({
           ],
         },
         {
-          text: "浏览器",
+          text: "浏览器原理",
           items: [
             {
-              text: "浏览器",
-              link: "/blogs/chrome/chrome",
+              text: "浏览器渲染原理",
+              link: "/blogs/chrome/render",
             },
           ],
         },
