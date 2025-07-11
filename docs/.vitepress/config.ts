@@ -93,6 +93,10 @@ export default defineConfig({
         {
           text: "浏览器原理",
           items: [
+             {
+              text: "进程和线程",
+              link: "/blogs/chrome/line",
+            },
             {
               text: "浏览器渲染原理",
               link: "/blogs/chrome/render",
