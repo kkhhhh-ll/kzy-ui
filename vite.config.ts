@@ -39,8 +39,8 @@ export default defineConfig({
     },
   },
   plugins: [vue(), vueDevTools(), vueJsx(), dts({
-      tsconfigPath: './tsconfig.build.json'
-    })],
+    tsconfigPath: './tsconfig.build.json'
+  })],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
