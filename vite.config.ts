@@ -22,9 +22,14 @@ export default defineConfig({
         '@popperjs/core',
         '@fortawesome/fontawesome-svg-core',
         '@fortawesome/free-solid-svg-icons',
+        'async-validator',
         '@fortawesome/vue-fontawesome'
       ],
       output: {
+            exports: 'named',
+        globals: {
+          vue: 'Vue'
+        },
         entryFileNames: 'index.js', // JavaScript 文件前缀
         chunkFileNames: 'index.js', // 代码分割块前缀
         assetFileNames: 'index.[ext]', // 静态资源前缀，包括 CSS 文件
@@ -39,7 +44,8 @@ export default defineConfig({
     },
   },
   plugins: [vue(), vueDevTools(), vueJsx(), dts({
-    tsconfigPath: './tsconfig.build.json'
+    tsconfigPath: './tsconfig.build.json',
+    outDir: 'dist/types'
   })],
   resolve: {
     alias: {

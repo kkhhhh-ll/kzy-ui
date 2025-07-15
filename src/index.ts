@@ -1,5 +1,7 @@
 
 import type { App } from 'vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
 import Collapse, { CollapseItem } from '@/components/Collapse'
@@ -11,7 +13,9 @@ import Message from '@/components/Message'
 import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
 
-import '@/styles/index.scss'
+import './styles/index.css'
+
+library.add(fas)
 
 const components = [
     Alert, Button, Collapse, Color, Dropdown, Icon, Input, Message, Switch, Tooltip,

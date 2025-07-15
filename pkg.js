@@ -94,7 +94,9 @@ function generate(fileList) {
 generate(fileList)
 function totalGen() {
     let t1 = `
-    import type { App } from 'vue'
+    import type { App } from 'vue'\n
+    import { library } from '@fortawesome/fontawesome-svg-core'\n
+import { fas } from '@fortawesome/free-solid-svg-icons'\n
     `
     let t2 = ''
     fileList.forEach((item) => {
@@ -105,7 +107,8 @@ function totalGen() {
         }
     })
     let t3 = `
-    import './styles/index.css'
+    import './styles/index.css'\n
+    library.add(fas)
     `
     let t4 = `
     const components = [
