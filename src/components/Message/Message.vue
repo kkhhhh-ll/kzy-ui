@@ -36,7 +36,7 @@ import {
   watch,
 } from "vue";
 import RenderContent from "@/utils/renderContent";
-import Icon from "../Icon/Icon.vue";
+import Icon from "../Icon";
 import { getLastBottomOffset } from "./method";
 import type { MessageProps } from "./types";
 const props = withDefaults(defineProps<MessageProps>(), {

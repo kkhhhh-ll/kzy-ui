@@ -24,8 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import type { ButtonProps } from "./types.ts";
-import Icon from "../Icon/Icon.vue";
+import type { ButtonProps } from "./types";
+import Icon from "../Icon/index";
 import {
   ref,
   withDefaults,

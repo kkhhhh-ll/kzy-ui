@@ -1,11 +1,14 @@
 // 新建文件
 import { join, dirname } from "path";
-import { readdirSync, existsSync, writeFileSync } from 'fs'
+import { readdirSync, writeFileSync } from 'fs'
 import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url); //获取文件的绝对路径，包含当前文件名
 const __dirname = dirname(__filename);//获取文件的绝对路径，不包含当前文件名
-const coms = join(__dirname, '/src/components')
-const fileList = readdirSync(coms)
+const coms = join(__dirname, '/src/components') // 组件文件地址
+const total = join(__dirname, '/src/index.ts') // 全局文件
+const fileList = readdirSync(coms) // @/src/components下所有的文件名
+let multi = ['Collapse']
+let extra = ['CollapseItem']
 function generateCode(fileName) {
     const template = `
 import type { App } from 'vue'
@@ -39,11 +42,21 @@ import ${it} from './${it}.vue'
         }
     }
 
-    let t3 = `
-export {
-${nameList}
-} 
+    let t3 = ''
+    nameList.forEach((it, index) => {
+        if (index === 0) {
+            t3 += `
+export default ${it}
 `
+
+        } else {
+            t3 += `
+export {
+${it}
+}
+`
+        }
+    })
     let t4 = `export * from './types'`
     let template = t1 + t2 + t3 + t4
 
@@ -79,3 +92,44 @@ function generate(fileList) {
 }
 
 generate(fileList)
+function totalGen() {
+    let t1 = `
+    import type { App } from 'vue'
+    `
+    let t2 = ''
+    fileList.forEach((item) => {
+        if (multi.includes(item)) {
+            t2 += `import ${item}, { ${item}Item } from '@/components/${item}'\n`
+        } else {
+            t2 += `import ${item} from '@/components/${item}'\n`
+        }
+    })
+    let t3 = `
+    import './styles/index.css'
+    `
+    let t4 = `
+    const components = [
+    ${fileList},
+    ${extra}
+    ]
+    `
+    let t5 = `
+    const install = (app: App) => {
+  components.forEach((compoment) => {
+    app.component(compoment.name!, compoment)
+  })
+}\n
+    export {
+  ${fileList},
+    ${extra}
+}\n
+export default {
+  install
+}
+    `
+    let template = t1 + t2 + t3 + t4 + t5
+    writeFileSync(total, template, (error) => {
+        console.log(error)
+    })
+}
+totalGen()

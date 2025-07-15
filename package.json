@@ -1,7 +1,7 @@
 {
-  "name": "k-element",
-  "version": "0.0.0",
-  "private": true,
+  "name": "kzzzy-ui",
+  "version": "1.0.1",
+  "private": false,
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,8 +9,9 @@
     "preview": "vite preview",
     "czg": "git add . && cz",
     "gen": "node pkg.js",
-    "build-only": "vite build",
+    "build-only": "run-p build-es",
     "type-check": "vue-tsc --build",
+    "build-es": "vite build --config vite.config.ts",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -19,6 +20,24 @@
     "commitizen": {
       "path": "node_modules/cz-git"
     }
+  },
+   "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "dist/index.css"
+  ],
+   "module": "./dist/es/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/es/index.js"
+    },
+    "./dist/": {
+      "import": "./dist/"
+    }
+  },
+    "peerDependencies": {
+    "vue": "^3.5.13"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
