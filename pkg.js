@@ -55,6 +55,7 @@ function judgeDir(dir) {
     return len
 }
 function generateFile(path, name, vueFile) {
+    // 因单个vue文件的的文件夹较多，在此做优化
     if (vueFile.length === 1) {
         writeFileSync(path, generateCode(name), (error) => {
             console.log(error)
