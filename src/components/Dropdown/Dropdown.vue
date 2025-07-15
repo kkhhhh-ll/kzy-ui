@@ -51,7 +51,7 @@ import {
   defineOptions,
   defineProps,
 } from "vue";
-import Tooltip from "@/components/Tooltip/Tooltip.vue";
+import Tooltip from "../Tooltip/index";
 import type { TooltipInstance } from "../Tooltip/types";
 import renderContent from "@/utils/renderContent";
 defineOptions({

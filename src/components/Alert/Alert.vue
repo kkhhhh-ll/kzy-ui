@@ -30,7 +30,7 @@ import {
 } from "vue";
 defineOptions({ name: "KAlert" });
 import type { AlertProps } from "./types";
-import Icon from "../Icon";
+import Icon from "../Icon/index";
 withDefaults(defineProps<AlertProps>(), {
   type: "primary",
   showIcon: true,

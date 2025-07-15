@@ -86,7 +86,7 @@ import {
   computed,
 } from "vue";
 import type { InputProps, InputEmits, InputInstance } from "./types";
-import Icon from "../Icon";
+import Icon from "../Icon/index";
 defineOptions({
   name: "KInput",
 });
