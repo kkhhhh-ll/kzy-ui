@@ -107,7 +107,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons'\n
         }
     })
     let t3 = `
-    import './styles/index.css'\n
+    import '@/styles/index.scss'\n
     library.add(fas)
     `
     let t4 = `

@@ -26,7 +26,7 @@ export default defineConfig({
         '@fortawesome/vue-fontawesome'
       ],
       output: {
-            exports: 'named',
+        exports: 'named',
         globals: {
           vue: 'Vue'
         },

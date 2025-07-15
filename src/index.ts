@@ -13,7 +13,7 @@ import Message from '@/components/Message'
 import Switch from '@/components/Switch'
 import Tooltip from '@/components/Tooltip'
 
-import './styles/index.css'
+import '@/styles/index.scss'
 
 library.add(fas)
 
