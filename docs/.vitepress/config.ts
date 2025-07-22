@@ -63,6 +63,7 @@ export default defineConfig({
             { text: "接口", link: "/blogs/typescript/typescript-interface" },
             { text: "函数", link: "/blogs/typescript/typescript-func" },
             { text: "泛型", link: "/blogs/typescript/typescript-gen" },
+            { text: "关键字", link: "/blogs/typescript/typescript-words" },
           ],
         },
         {
@@ -72,6 +73,14 @@ export default defineConfig({
         {
           text: "javaScript",
           items: [
+             {
+              text: "symbol",
+              link: "/blogs/javaScript/symbol",
+            },
+            {
+              text: "数组",
+              link: "/blogs/javaScript/array",
+            },
             {
               text: "this指向",
               link: "/blogs/javaScript/this",
