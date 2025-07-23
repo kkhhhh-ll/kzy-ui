@@ -78,6 +78,10 @@ export default defineConfig({
               link: "/blogs/javaScript/symbol",
             },
             {
+              text: "遍历器(Iterator)",
+              link: "/blogs/javaScript/iterator",
+            },
+            {
               text: "数组",
               link: "/blogs/javaScript/array",
             },
@@ -151,6 +155,15 @@ export default defineConfig({
             {
               text: "node内置模块-fs",
               link: "/blogs/node/fs",
+            },
+          ],
+        },
+        {
+          text: "git",
+          items: [
+            {
+              text: "git",
+              link: "/blogs/git/git",
             },
           ],
         },
