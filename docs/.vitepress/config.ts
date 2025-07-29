@@ -101,6 +101,10 @@ export default defineConfig({
               text: "import.meta",
               link: "/blogs/javaScript/import-meta",
             },
+            {
+              text: "Module",
+              link: "/blogs/javaScript/module",
+            },
           ],
         },
         {

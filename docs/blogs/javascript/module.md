@@ -12,17 +12,17 @@
 </script>
 ```
 
-默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到<script>标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。
+默认情况下，浏览器是同步加载 JavaScript 脚本，即渲染引擎遇到script标签就会停下来，等到执行完脚本，再继续向下渲染。如果是外部脚本，还必须加入脚本下载的时间。
 
 ## 浏览器加载ES6模块
 
-浏览器加载 ES6 模块，也使用<script>标签，但是要加入type="module"属性。
+浏览器加载 ES6 模块，也使用script标签，但是要加入type="module"属性。
 
 ```
 <script type="module" src="./foo.js"></script>
 ```
 
-浏览器对于带有type="module"的<script>，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，等同于打开了<script>标签的defer属性。
+浏览器对于带有type="module"的script，都是异步加载，不会造成堵塞浏览器，即等到整个页面渲染完，再执行模块脚本，等同于打开<script标签的defer属性。
 
 ## ES6与CommomJs模块差异
 1、cjs输出的值的拷贝，esm输出的是值的引用；<br>
