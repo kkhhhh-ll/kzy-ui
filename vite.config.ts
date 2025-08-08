@@ -1,3 +1,4 @@
+/// <reference types="vitest/config" />
 import { fileURLToPath, URL } from "node:url";
 import dts from 'vite-plugin-dts'
 import { defineConfig } from "vite";
@@ -47,6 +48,15 @@ export default defineConfig({
     tsconfigPath: './tsconfig.build.json',
     outDir: 'dist/types'
   })],
+  test: {
+    environment: 'jsdom',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      include: ['src/**/*.{ts,tsx,vue}'],
+      exclude: ['src/**/*.test.{ts,tsx,vue}', 'src/**/*.stories.{ts,tsx,vue}'],
+    },
+  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),

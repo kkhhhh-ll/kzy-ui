@@ -142,6 +142,15 @@ export default defineConfig({
           ],
         },
         {
+          text: "单元测试",
+          items: [
+            {
+              text: "vitest",
+              link: "/blogs/vitest/vitest",
+            },
+          ],
+        },
+        {
           text: "Node",
           items: [
             {
