@@ -115,3 +115,27 @@ describe('税率展示',() => {
 })
 
 ```
+
+## 脚手架 (bin/scaffold)
+
+## 自定义指令
+
+脚手架一般是框架自身提供的命令行工具, 用于生成模板代码, 放置于 bin 目录。<br>
+脚手架一般通过 npm 命令执行, 在 package.json 中添加一条命令。
+
+## store
+
+## 断言
+
+| 断言  | 功能           |
+| :------ | :------------- |
+| not | 取反 |
+| toBe    | 判断值或对象引用是否相同 |
+| toEqual    | 判断对象值是否相同 |
+| toBeGreaterThan    | 大于 |
+| toBeGreaterThanOrEqual    | 大于等于 |
+| toBeLessThan    | 小于 |
+| toBeLessThanOrEqual    | 小于等于 |
+| toBeTypeOf   | 断言类型是否相同 |
+| toBeInstanceOf    | 判断是否目标类的实例 |
+| toBeStrictEqual    | 严格相等 |
