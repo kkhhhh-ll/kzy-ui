@@ -181,6 +181,15 @@ export default defineConfig({
           ],
         },
         {
+          text: "Canvas",
+          items: [
+            {
+              text: "Canvas",
+              link: "/blogs/canvas/pic",
+            },
+          ],
+        },
+        {
           text: "工程化",
           items: [
             {
