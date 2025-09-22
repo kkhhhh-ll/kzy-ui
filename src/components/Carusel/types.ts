@@ -8,4 +8,6 @@ export interface CaruselProps {
     showSpot?: boolean; // 是否显示指示点
     width?: number; // 轮播图宽度
     height?: number; // 轮播图高度
+    autoPlay?: boolean; // 是否自动轮播
+    interval?: number; // 自动轮播时间间隔
 }

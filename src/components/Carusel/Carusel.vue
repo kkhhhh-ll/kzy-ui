@@ -32,7 +32,9 @@ const props = withDefaults(defineProps<CaruselProps>(), {
     showBtn: false,
     showSpot: false,
     width: 300,
-    height: 150
+    height: 150,
+    autoPlay: true,
+    interval: 3000,
 });
 const currentIndex = ref(0);
 let timer: ReturnType<typeof setInterval> | null = null
@@ -54,9 +56,11 @@ function goTo(index: number) {
     currentIndex.value = index;
 }
 onMounted(() => {
-    timer = setInterval(() => {
-        next();
-    }, 3000)
+    if (props.autoPlay) {
+        timer = setInterval(() => {
+            next();
+        }, props.interval)
+    }
 })
 // 组件卸载前清除定时器
 onBeforeUnmount(() => {
