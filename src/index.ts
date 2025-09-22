@@ -4,6 +4,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
+import Card from '@/components/Card'
 import Carusel from '@/components/Carusel'
 import Collapse, { CollapseItem } from '@/components/Collapse'
 import Color from '@/components/Color'
@@ -19,7 +20,7 @@ import '@/styles/index.scss'
 library.add(fas)
 
 const components = [
-  Alert, Button, Carusel, Collapse, Color, Dropdown, Icon, Input, Message, Switch, Tooltip,
+  Alert, Button, Card, Carusel, Collapse, Color, Dropdown, Icon, Input, Message, Switch, Tooltip,
   CollapseItem
 ]
 
@@ -30,7 +31,7 @@ const install = (app: App) => {
 }
 
 export {
-  Alert, Button, Carusel, Collapse, Color, Dropdown, Icon, Input, Message, Switch, Tooltip,
+  Alert, Button, Card, Carusel, Collapse, Color, Dropdown, Icon, Input, Message, Switch, Tooltip,
   CollapseItem
 }
 

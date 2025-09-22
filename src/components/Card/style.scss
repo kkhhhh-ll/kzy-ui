@@ -1,0 +1,29 @@
+.k-card {
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  overflow: hidden;
+  color: #333;
+  font-size: 14px;
+
+  &__header {
+    padding: 16px;
+    font-weight: 500;
+    font-size: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    background: #fafbfc;
+  }
+
+  &__body {
+    padding: 16px;
+    background: #fff;
+  }
+
+  &__footer {
+    padding: 12px 16px;
+    border-top: 1px solid #f0f0f0;
+    background: #fafbfc;
+    font-size: 13px;
+    color: #888;
+  }
+}
