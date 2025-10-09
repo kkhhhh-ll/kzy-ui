@@ -73,7 +73,7 @@ export default defineConfig({
         {
           text: "javaScript",
           items: [
-             {
+            {
               text: "symbol",
               link: "/blogs/javaScript/symbol",
             },
@@ -110,7 +110,7 @@ export default defineConfig({
         {
           text: "浏览器原理",
           items: [
-             {
+            {
               text: "进程和线程",
               link: "/blogs/chrome/line",
             },
@@ -134,6 +134,10 @@ export default defineConfig({
             {
               text: "monorepo开发环境搭建/esbuild打包",
               link: "/blogs/vue3/monorepo",
+            },
+            {
+              text: "vue3主流程解析",
+              link: "/blogs/vue3/flow",
             },
             {
               text: "Vue3响应式",
