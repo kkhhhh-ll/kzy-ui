@@ -169,6 +169,10 @@ export default defineConfig({
               text: "node内置模块-fs",
               link: "/blogs/node/fs",
             },
+            {
+              text: "npm包管理原理",
+              link: "/blogs/node/code",
+            },
           ],
         },
         {
