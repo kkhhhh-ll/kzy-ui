@@ -1,138 +1,187 @@
-// 新建文件
+#!/usr/bin/env node
 import { join, dirname } from "path";
-import { readdirSync, writeFileSync } from 'fs'
+import { readdirSync, writeFileSync, existsSync } from 'fs';
 import { fileURLToPath } from "url";
-const __filename = fileURLToPath(import.meta.url); //获取文件的绝对路径，包含当前文件名
-const __dirname = dirname(__filename);//获取文件的绝对路径，不包含当前文件名
-const coms = join(__dirname, '/src/components') // 组件文件地址
-const total = join(__dirname, '/src/index.ts') // 全局文件
-const fileList = readdirSync(coms) // @/src/components下所有的文件名
-let multi = ['Collapse']
-let extra = ['CollapseItem']
-function generateCode(fileName) {
-    const template = `
+
+// 常量定义
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const COMPONENTS_DIR = join(__dirname, '/src/components');
+const ENTRY_FILE = join(__dirname, '/src/index.ts');
+const MULTI_COMPONENTS = ['Collapse']; // 多文件组件
+const EXTRA_COMPONENTS = ['CollapseItem']; // 额外导出组件
+
+// 工具函数
+const getVueFiles = (dir) => {
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).filter(file => file.endsWith('.vue'));
+};
+
+const generateSingleComponentCode = (componentName) => {
+  return `
 import type { App } from 'vue'
-import ${fileName} from './${fileName}.vue'
+import ${componentName} from './${componentName}.vue'
 
-${fileName}.install = (app: App) => {
-  app.component(${fileName}.name!, ${fileName})
+${componentName}.install = (app: App) => {
+  app.component(${componentName}.name!, ${componentName})
 }
-export default ${fileName}
+
+export default ${componentName}
 export * from './types'
-`
-    return template
-}
-function generateMultiCode(fileName) {
-    let nameList = fileName.map(item => item.replace('.vue', ''))
-    let t1 = `import type { App } from 'vue'`
-    let t2 = ``
-    for (let i = 0; i < 2; i++) {
-        if (i === 0) {
-            nameList.forEach(it => {
-                t2 += `
-import ${it} from './${it}.vue' 
-`
-            })
-        } else if (i === 1) {
-            nameList.forEach(it => {
-                t2 += `${it}.install = (app: App) => {
-  app.component(${it}.name!, ${it})
-}\n`
-            })
-        }
-    }
+`.trim();
+};
 
-    let t3 = ''
-    nameList.forEach((it, index) => {
-        if (index === 0) {
-            t3 += `
-export default ${it}
-`
+const generateMultiComponentCode = (vueFiles) => {
+  const componentNames = vueFiles.map(file => file.replace('.vue', ''));
 
-        } else {
-            t3 += `
-export {
-${it}
-}
-`
-        }
-    })
-    let t4 = `export * from './types'`
-    let template = t1 + t2 + t3 + t4
+  const imports = componentNames.map(name =>
+    `import ${name} from './${name}.vue'`
+  ).join('\n');
 
-    return template
-}
-function judgeDir(dir) {
-    const files = readdirSync(dir)
-    const len = files.filter(item => /vue/.test(item))
-    return len
-}
-function generateFile(path, name, vueFile) {
-    // 因单个vue文件的的文件夹较多，在此做优化
-    if (vueFile.length === 1) {
-        writeFileSync(path, generateCode(name), (error) => {
-            console.log(error)
-        })
+  const installs = componentNames.map(name =>
+    `${name}.install = (app: App) => {
+  app.component(${name}.name!, ${name})
+}`
+  ).join('\n\n');
+
+  const exports = componentNames.map((name, index) => {
+    if (index === 0) {
+      return `export default ${name}`;
     } else {
-        writeFileSync(path, generateMultiCode(vueFile), (error) => {
-            console.log(error)
-        })
+      return `export { ${name} }`;
     }
+  }).join('\n');
 
-}
-function generate(fileList) {
-    if (!fileList.length) retrun
-    fileList.forEach((item) => {
-        // 有的组件不止有一个vue文件，例如collapse collapseItem
-        const dir = join(coms, `/${item}`)
-        const vueFile = judgeDir(dir)
-        const path = join(coms, `/${item}/index.ts`)
-        generateFile(path, item, vueFile)
-    })
-}
+  return `
+import type { App } from 'vue'
 
-generate(fileList)
-function totalGen() {
-    let t1 = `
-    import type { App } from 'vue'\n
-    import { library } from '@fortawesome/fontawesome-svg-core'\n
-import { fas } from '@fortawesome/free-solid-svg-icons'\n
-    `
-    let t2 = ''
-    fileList.forEach((item) => {
-        if (multi.includes(item)) {
-            t2 += `import ${item}, { ${item}Item } from '@/components/${item}'\n`
-        } else {
-            t2 += `import ${item} from '@/components/${item}'\n`
-        }
-    })
-    let t3 = `
-    import '@/styles/index.scss'\n
-    library.add(fas)
-    `
-    let t4 = `
-    const components = [
-    ${fileList},
-    ${extra}
-    ]
-    `
-    let t5 = `
-    const install = (app: App) => {
-  components.forEach((compoment) => {
-    app.component(compoment.name!, compoment)
+${imports}
+
+${installs}
+
+${exports}
+export * from './types'
+`.trim();
+};
+
+const generateComponentFile = (componentInfo) => {
+  const { dir, name, vueFiles } = componentInfo;
+  const indexPath = join(dir, 'index.ts');
+
+  if (vueFiles.length === 0) {
+    console.warn(`⚠️ No Vue files found in ${dir}`);
+    return;
+  }
+
+  const code = vueFiles.length === 1
+    ? generateSingleComponentCode(name)
+    : generateMultiComponentCode(vueFiles);
+
+  try {
+    writeFileSync(indexPath, code);
+    console.log(`✅ Generated index.ts for ${name}`);
+  } catch (error) {
+    console.error(`❌ Failed to generate index.ts for ${name}:`, error);
+  }
+};
+
+const generateComponents = () => {
+  if (!existsSync(COMPONENTS_DIR)) {
+    console.error(`❌ Components directory not found: ${COMPONENTS_DIR}`);
+    return [];
+  }
+  // 目录名称
+  const componentDirs = readdirSync(COMPONENTS_DIR);
+  const componentInfos = [];
+
+  componentDirs.forEach(dirName => {
+    // 目录路径
+    const dirPath = join(COMPONENTS_DIR, dirName);
+    const vueFiles = getVueFiles(dirPath);
+
+    componentInfos.push({
+      name: dirName,
+      dir: dirPath,
+      vueFiles
+    });
+
+    generateComponentFile(componentInfos[componentInfos.length - 1]);
+  });
+
+  return componentInfos;
+};
+
+const generateEntryFile = (componentInfos) => {
+  if (componentInfos.length === 0) {
+    console.warn('⚠️ No components found to generate entry file');
+    return;
+  }
+
+  // 生成导入语句
+  const importStatements = componentInfos.map(({ name }) => {
+    if (MULTI_COMPONENTS.includes(name)) {
+      return `import ${name}, { ${name}Item } from '@/components/${name}'`;
+    } else {
+      return `import ${name} from '@/components/${name}'`;
+    }
+  }).join('\n');
+
+  // 生成组件名称数组
+  const componentNames = componentInfos.map(({ name }) => name);
+  const allComponentNames = [...componentNames, ...EXTRA_COMPONENTS];
+
+  const entryCode = `
+import type { App } from 'vue'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+${importStatements}
+
+import '@/styles/index.scss'
+
+library.add(fas)
+
+const components = [
+${allComponentNames.map(name => `  ${name}`).join(',\n')}
+]
+
+const install = (app: App) => {
+  components.forEach(component => {
+    app.component(component.name!, component)
   })
-}\n
-    export {
-  ${fileList},
-    ${extra}
-}\n
+}
+
+export {
+${allComponentNames.map(name => `  ${name}`).join(',\n')}
+}
+
 export default {
   install
 }
-    `
-    let template = t1 + t2 + t3 + t4 + t5
-    writeFileSync(total, template, (error) => {
-        console.log(error)
-    })
-}
-totalGen()
+`.trim();
+
+  try {
+    writeFileSync(ENTRY_FILE, entryCode);
+    console.log('✅ Generated entry file: src/index.ts');
+  } catch (error) {
+    console.error('❌ Failed to generate entry file:', error);
+  }
+};
+
+// 主函数
+const main = () => {
+  console.log('🚀 Starting component index file generation...');
+
+  try {
+    const componentInfos = generateComponents();
+    generateEntryFile(componentInfos);
+
+    console.log('🎉 Component index generation completed successfully!');
+  } catch (error) {
+    console.error('💥 Component index generation failed:', error);
+    process.exit(1);
+  }
+};
+
+// 执行主函数
+main();

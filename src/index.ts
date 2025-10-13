@@ -1,7 +1,7 @@
-
 import type { App } from 'vue'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+
 import Alert from '@/components/Alert'
 import Button from '@/components/Button'
 import Card from '@/components/Card'
@@ -20,18 +20,40 @@ import '@/styles/index.scss'
 library.add(fas)
 
 const components = [
-  Alert, Button, Card, Carusel, Collapse, Color, Dropdown, Icon, Input, Message, Switch, Tooltip,
+  Alert,
+  Button,
+  Card,
+  Carusel,
+  Collapse,
+  Color,
+  Dropdown,
+  Icon,
+  Input,
+  Message,
+  Switch,
+  Tooltip,
   CollapseItem
 ]
 
 const install = (app: App) => {
-  components.forEach((compoment) => {
-    app.component(compoment.name!, compoment)
+  components.forEach(component => {
+    app.component(component.name!, component)
   })
 }
 
 export {
-  Alert, Button, Card, Carusel, Collapse, Color, Dropdown, Icon, Input, Message, Switch, Tooltip,
+  Alert,
+  Button,
+  Card,
+  Carusel,
+  Collapse,
+  Color,
+  Dropdown,
+  Icon,
+  Input,
+  Message,
+  Switch,
+  Tooltip,
   CollapseItem
 }
 
