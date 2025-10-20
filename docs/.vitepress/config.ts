@@ -140,6 +140,10 @@ export default defineConfig({
               link: "/blogs/vue3/flow",
             },
             {
+              text: "vue3实例",
+              link: "/blogs/vue3/instance",
+            },
+            {
               text: "Vue3响应式",
               link: "/blogs/vue3/reactive",
             },
