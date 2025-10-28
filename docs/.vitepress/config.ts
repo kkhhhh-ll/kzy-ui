@@ -71,39 +71,39 @@ export default defineConfig({
           items: [{ text: "介绍", link: "/blogs/reg/reg" }],
         },
         {
-          text: "javaScript",
+          text: "javascript",
           items: [
             {
               text: "symbol",
-              link: "/blogs/javaScript/symbol",
+              link: "/blogs/javascript/symbol",
             },
             {
               text: "遍历器(Iterator)",
-              link: "/blogs/javaScript/iterator",
+              link: "/blogs/javascript/iterator",
             },
             {
               text: "数组",
-              link: "/blogs/javaScript/array",
+              link: "/blogs/javascript/array",
             },
             {
               text: "this指向",
-              link: "/blogs/javaScript/this",
+              link: "/blogs/javascript/this",
             },
             {
               text: "原型和原型链",
-              link: "/blogs/javaScript/proto",
+              link: "/blogs/javascript/proto",
             },
             {
               text: "LRU算法",
-              link: "/blogs/javaScript/lru",
+              link: "/blogs/javascript/lru",
             },
             {
               text: "import.meta",
-              link: "/blogs/javaScript/import-meta",
+              link: "/blogs/javascript/import-meta",
             },
             {
               text: "Module",
-              link: "/blogs/javaScript/module",
+              link: "/blogs/javascript/module",
             },
           ],
         },

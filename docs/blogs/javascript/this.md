@@ -123,6 +123,43 @@ obj.getName.apply(otherObj); // 222
 obj.getName.bind(this)();    // 333
 obj.getName.bind(otherObj)();// 222
 ```
+```
+Function.prototype.myCall = function(context = window,...args) {
+  if(typeof this !== 'function') {
+    throw new Error('Error')
+  }
+  const fn = Symbol('fn')
+  context[fn] = this
+  const result = context[fn](...args)
+  delete context[fn]
+  return result
+}
+
+Function.prototype.myApply = function(context = window,args) {
+  if(typeof this !== 'function') {
+    throw new Error('error')
+  }
+  const fn = Symbol('fn')
+  context[fn] = this
+  const result = context[fn](...args)
+  delete context[fn]
+  return result
+}
+
+Function.prototype.myBind = function(context = window, args) {
+  if(typeof this !== 'function') {
+    throw new Error('error')
+  }
+  const fn = this
+  return function Fn(...args1) {
+    return fn.apply(
+      this instanceof Fn ? this: context,
+      ...args,...args1
+    )
+  }
+}
+
+```
 
 ## 5、箭头函数
 

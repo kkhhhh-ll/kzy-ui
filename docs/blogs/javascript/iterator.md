@@ -21,3 +21,34 @@ interface IterationResult {
   done: boolean,
 }
 ```
+
+实现一个迭代器
+
+```
+const obj = {
+  a: '1',
+  b: '2'
+}
+obj[Symbol.Iterator]=function() {
+  const keys = Object.keys()
+  let count = 0
+  return {
+    next() {
+      if(count<keys.length) {
+        return {value:obj[keys[count++]],done: false}
+      } else {
+        return {value: undefined,done: true}
+      }
+    }
+  }
+}
+
+obj[Symbol.Iterator]=function*() {
+  const keys = Object.keys()
+  for(const key of keys) {
+    yield [key,obj[key]] 
+  }
+}
+
+
+```

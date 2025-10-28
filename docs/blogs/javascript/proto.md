@@ -41,3 +41,17 @@ console.dir(Demo.prototype)
 ## 原型链
 
 当你在访问一个对象属性的时候，如果该对象内部不存在这个属性，那么就会去它的 proto 属性所指向的对象（父类对象）上查找，如果父类对象依旧不存在这个属性，那么就会去其父类的 proto 属性所指向的父类对象上去查找。以此类推，直到找到原型链的尽头 null。<br>
+
+```
+function myInstanceOf(left,right){
+    let proto = Object.getPrototypeOf(left)
+    let prototype = right.prototype
+
+    while(true) {
+        if(!proto) return false
+        if(proto === prototype) return true
+        proto = Object.getPrototypeOf(proto)
+    }
+}
+
+```
