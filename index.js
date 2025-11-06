@@ -208,4 +208,3 @@ function getMaxChildArr(arr) {
     console.log(maxSum)
 }
 getMaxChildArr([-2, 1, -3, 4, -1, 2, 1, -5, 4])
-

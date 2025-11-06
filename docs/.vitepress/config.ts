@@ -147,6 +147,10 @@ export default defineConfig({
               text: "Vue3响应式",
               link: "/blogs/vue3/reactive",
             },
+            {
+              text: "Vue3插槽",
+              link: "/blogs/vue3/slots",
+            },
           ],
         },
         {
