@@ -1,7 +1,7 @@
 ## 什么是插槽？
 
 slot是接受父组件传来的插槽内容，生成VNode并返回的函数。<br>
-<slot>编译后就是_renderSlot函数，接受slots、name、props、插槽默认渲染函数
+`<slot>`编译后就是_renderSlot函数，接受slots、name、props、插槽默认渲染函数
 
 ## 组件渲染的原理
 
