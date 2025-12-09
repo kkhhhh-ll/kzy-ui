@@ -105,6 +105,10 @@ export default defineConfig({
               text: "Module",
               link: "/blogs/javascript/module",
             },
+            {
+              text: "promise",
+              link: "/blogs/javascript/promise",
+            },
           ],
         },
         {
