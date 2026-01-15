@@ -29,24 +29,31 @@ const obj = {
   a: '1',
   b: '2'
 }
-obj[Symbol.Iterator]=function() {
-  const keys = Object.keys()
+obj[Symbol.iterator] = function() {
+  const keys = Object.keys(this)  // 1. 使用 this 而不是 obj
   let count = 0
+  
   return {
-    next() {
-      if(count<keys.length) {
-        return {value:obj[keys[count++]],done: false}
+    next: () => {  // 使用箭头函数保持 this 指向
+      if (count < keys.length) {
+        return {
+          value: this[keys[count++]],  // 2. 使用 this 访问属性
+          done: false
+        }
       } else {
-        return {value: undefined,done: true}
+        return {
+          value: undefined,
+          done: true
+        }
       }
     }
   }
 }
 
-obj[Symbol.Iterator]=function*() {
-  const keys = Object.keys()
-  for(const key of keys) {
-    yield [key,obj[key]] 
+obj[Symbol.iterator] = function*() {
+  const keys = Object.keys(this)
+  for (let key of keys) {
+    yield this[key]
   }
 }
 

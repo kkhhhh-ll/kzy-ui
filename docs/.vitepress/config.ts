@@ -155,6 +155,10 @@ export default defineConfig({
               text: "Vue3插槽",
               link: "/blogs/vue3/slots",
             },
+            {
+              text: "pinia-mini",
+              link: "/blogs/vue3/pinia",
+            },
           ],
         },
         {

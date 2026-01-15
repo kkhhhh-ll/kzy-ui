@@ -43,21 +43,26 @@ function getStr(arr) {
 给定一个未排序的整数数组nums，找出数字连续的最长序列（不要求序列元素在原数组中连续）的长度。
 
 ```
-function getMaxLen(nums) {
+var longestConsecutive = function (nums) {
+    if (nums.length === 0) return 0
+    let maxLength = 0
     const set = new Set(nums)
-    let maxLen = 1
-    for (let i = 0; i < nums.length; i++) {
-        if (!set.has(nums[i] - 1)) {
-            let currentLen = 0
-            let currentNum = nums[i]
-            while (set.has(currentNum++)) {
-                currentLen++
-            }
-            maxLen = Math.max(maxLen, currentLen)
-
-
+    for (const num of set) {
+        if (set.has(num - 1)) {
+            continue
+        }
+        let nextNum = num + 1
+        let currentLength = 1
+        while (set.has(nextNum)) {
+            nextNum++
+            currentLength++
+        }
+        maxLength = Math.max(maxLength, currentLength)
+        if (maxLength * 2 >= set.size) {
+            break;
         }
     }
-    return maxLen
-}
+    return maxLength
+
+};
 ```
