@@ -54,14 +54,14 @@ class myPromise {
         onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : val => val;
         onRejected = typeof onRejected === 'function' ? onRejected : reason => { throw reason };
         // 兼容性处理
-        const queueMicrotask = typeof queueMicrotask === 'function'  ? queueMicrotask  : callback => Promise.resolve().then(callback);
+        const microtask = typeof queueMicrotask === 'function' ? queueMicrotask : callback => Promise.resolve().then(callback);
         // 创建新的 Promise
         const thenPromise = new myPromise((resolve, reject) => {
             // 统一的回调处理函数
             // 执行onFulfilled和onRejected
             const handleCallback = (cb) => {
                 // 使用微任务
-                queueMicrotask(() => {
+                microtask(() => {
                     try {
                         const x = cb(this.result);
                         // 解析返回值
