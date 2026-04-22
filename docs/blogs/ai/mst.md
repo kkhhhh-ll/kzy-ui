@@ -181,3 +181,75 @@ LLM响应异常，比如格式错误、内容为空，可以重新请求 → 修
 会话持久化存储，agent可以直接读取文件，恢复对话。
 
 ```
+
+## 17、LLM返回的格式？Function calling的格式
+
+```
+# llm调用 client.chat.completions.create(model, messages, tools,tool_choice(auto,none,required),stream)
+"""
+非流式
+{
+    "id":
+    "object":"chat.completion"
+    "created_at":
+    "model":
+    "choices":[
+        {
+            "index":,
+            "finish_reason":,
+            "message":[
+                {
+                    "role":,
+                    "content":,
+                    "tool_call",
+                }
+            ]
+        }
+    ],
+    "usage":{
+        "prompt",
+        "completion"
+        "total"
+    }
+}
+流式：
+"object":"chat.completion.chunk"
+"choices":{
+    "delta":{
+        
+    }
+}
+data: [DONE]
+
+api_key与base_url构建client使用
+model是调用llm时使用
+
+"""
+
+"""
+function call
+
+{
+    "type":"function",
+    "function": {
+        name:
+        description
+        "parameters":{
+            type: object,
+            "properties": {
+                "type":
+                "description"
+            },
+            required: true
+        }
+    }
+}
+
+
+"""
+
+
+
+
+
+```
